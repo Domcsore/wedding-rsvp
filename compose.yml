@@ -3,3 +3,11 @@ services:
     build: .
     ports:
       - "8181:3000"
+    environment:
+      - JWT_SECRET=/run/secrets/jwt_secret
+    secrets:
+      - jwt_secret
+
+secrets:
+  jwt_secret:
+    file: ./jwt_secret.txt
