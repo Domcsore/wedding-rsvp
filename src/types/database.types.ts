@@ -9,70 +9,30 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      guest_menu: {
-        Row: {
-          guest_id: string
-          main_id: string
-          starter_id: string
-        }
-        Insert: {
-          guest_id: string
-          main_id: string
-          starter_id: string
-        }
-        Update: {
-          guest_id?: string
-          main_id?: string
-          starter_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "guest_menu_guest_id_fkey"
-            columns: ["guest_id"]
-            isOneToOne: false
-            referencedRelation: "guests"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "guest_menu_main_id_fkey"
-            columns: ["main_id"]
-            isOneToOne: false
-            referencedRelation: "menu"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "guest_menu_starter_id_fkey"
-            columns: ["starter_id"]
-            isOneToOne: false
-            referencedRelation: "menu"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       guests: {
         Row: {
           attending: boolean | null
           created_at: string
+          email: string
           id: string
           name: string
           parent_guest: string | null
-          updated_at: string
         }
         Insert: {
           attending?: boolean | null
           created_at?: string
+          email: string
           id?: string
           name: string
           parent_guest?: string | null
-          updated_at: string
         }
         Update: {
           attending?: boolean | null
           created_at?: string
+          email?: string
           id?: string
           name?: string
           parent_guest?: string | null
-          updated_at?: string
         }
         Relationships: [
           {
@@ -110,6 +70,26 @@ export type Database = {
           title?: string
         }
         Relationships: []
+      }
+      orders: {
+        Row: {
+          guest_id: string
+        }
+        Insert: {
+          guest_id: string
+        }
+        Update: {
+          guest_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "guest_menu_guest_id_fkey"
+            columns: ["guest_id"]
+            isOneToOne: true
+            referencedRelation: "guests"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       users: {
         Row: {

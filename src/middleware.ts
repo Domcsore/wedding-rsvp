@@ -10,8 +10,13 @@ export async function middleware(req: NextRequest) {
     }
 
     const secret = new TextEncoder().encode(process.env.JWT_SECRET);
-    const { payload } = await jwtVerify(jwt.value, secret);
-    if (!payload || payload.role !== "admin") {
+    try {
+      const { payload } = await jwtVerify(jwt.value, secret);
+      if (!payload || payload.role !== "admin") {
+        return NextResponse.redirect(new URL("/login", req.nextUrl));
+      }
+    } catch (error) {
+      console.log(error);
       return NextResponse.redirect(new URL("/login", req.nextUrl));
     }
   }

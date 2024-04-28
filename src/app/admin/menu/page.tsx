@@ -56,13 +56,13 @@ const Menu = async () => {
             <label className="form-label" htmlFor="name">
               Name
             </label>
-            <input className="input" type="text" name="name" />
+            <input className="input" type="text" name="name" required />
           </div>
           <div className="form-field">
             <label className="form-label" htmlFor="ingredients">
               Ingredients
             </label>
-            <input className="input" type="text" name="ingredients" />
+            <input className="input" type="text" name="ingredients" required />
           </div>
           <div className="form-field">
             <label className="form-label" htmlFor="allergens">
