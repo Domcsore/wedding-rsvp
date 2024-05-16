@@ -73,7 +73,7 @@ const PageScroller = ({ menu, untilWedding, guest }: PageScrollerProps) => {
       >
         <PageSection>
           <Image
-            src={`/main.jpg`}
+            src={`/main.webp`}
             alt="Hannah and Dominic"
             fill
             className="brightness-50 object-cover"
