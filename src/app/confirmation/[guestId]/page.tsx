@@ -28,9 +28,6 @@ const Confirmation = async ({ params }: { params: { guestId: string } }) => {
         <h1 className="font-title uppercase text-3xl text-center w-full">
           Thank you {data.name}
         </h1>
-        <p className="text-sm text-center w-full">
-          We look forward to having you at our wedding
-        </p>
       </div>
     </PageSection>
   ) : (
