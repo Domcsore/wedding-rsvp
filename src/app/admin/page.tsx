@@ -7,8 +7,8 @@ const AdminHome = async () => {
   const addGuest = async (formData: FormData) => {
     "use server";
 
-    const name = formData.get("name");
-    const email = formData.get("email");
+    const name = formData.get("name")?.toString();
+    const email = formData.get("email")?.toString();
 
     if (!name || !email) {
       return;

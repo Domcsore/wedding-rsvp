@@ -15,21 +15,32 @@ const Menu = async () => {
   );
   const mains = menuData?.filter((item) => item.course === COURSE.MAIN.id);
 
+  const desserts = menuData?.filter(
+    (item) => item.course === COURSE.DESSERT.id
+  );
+
   const addItem = async (formData: FormData) => {
     "use server";
 
-    const name = formData.get("name");
-    const ingredients = formData.get("ingredients");
-    const allergens = formData.get("allergens");
-    const courseId = formData.get("courseId");
+    const name = formData.get("name")?.toString();
+    const ingredients = formData.get("ingredients")?.toString();
+    const allergens = formData.get("allergens")?.toString();
+    const courseId = formData.get("courseId")
+      ? parseInt(formData.get("courseId")!.toString())
+      : undefined;
 
     if (!name || !ingredients || !courseId) {
       return;
     }
 
-    const { error } = await supabaseClient
-      .from("menu")
-      .insert({ title: name, ingredients, allergens, course: courseId });
+    const { error } = await supabaseClient.from("menu").insert([
+      {
+        title: name,
+        ingredients,
+        allergens,
+        course: courseId,
+      },
+    ]);
 
     if (error) {
       console.log(error);
@@ -90,6 +101,7 @@ const Menu = async () => {
                 <select className="select" id="courseId" name="courseId">
                   <option value={COURSE.STARTER.id}>Starter</option>
                   <option value={COURSE.MAIN.id}>Main</option>
+                  <option value={COURSE.DESSERT.id}>Dessert</option>
                 </select>
               </div>
             </div>
@@ -106,6 +118,10 @@ const Menu = async () => {
       <div className="divider" />
       <Section title="Mains">
         <MenuTable items={mains} />
+      </Section>
+      <div className="divider" />
+      <Section title="Desserts">
+        <MenuTable items={desserts} />
       </Section>
     </>
   );

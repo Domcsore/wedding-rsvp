@@ -28,15 +28,25 @@ const Rsvp = async ({ params }: { params: { guestId: string } }) => {
 
   const menu = menuData.reduce(
     (acc, item) => {
-      if (item.course === COURSE.STARTER.id) {
-        acc.starters.push(item);
-      } else {
-        acc.mains.push(item);
+      switch (item.course) {
+        case COURSE.STARTER.id:
+          acc.starters.push(item);
+          break;
+        case COURSE.MAIN.id:
+          acc.mains.push(item);
+          break;
+        case COURSE.DESSERT.id:
+          acc.desserts.push(item);
+          break;
       }
 
       return acc;
     },
-    { starters: [], mains: [] } as { starters: MenuItem[]; mains: MenuItem[] }
+    { starters: [], mains: [], desserts: [] } as {
+      starters: MenuItem[];
+      mains: MenuItem[];
+      desserts: MenuItem[];
+    }
   );
 
   const untilWedding = formatDistanceToNowStrict(new Date("2024-06-22"), {

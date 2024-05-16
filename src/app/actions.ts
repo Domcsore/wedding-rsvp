@@ -19,11 +19,12 @@ export const declineRsvp = async (guestId: string) => {
 };
 
 export const acceptRsvp = async (formData: FormData) => {
-  const guestId = formData.get("guestId") as string;
-  const starterId = formData.get("starterId") as string;
-  const mainId = formData.get("mainId") as string;
+  const guestId = formData.get("guestId")?.toString();
+  const starterId = formData.get("starterId")?.toString();
+  const mainId = formData.get("mainId")?.toString();
+  const dessertId = formData.get("dessertId")?.toString();
 
-  if (!guestId || !starterId || !mainId) {
+  if (!guestId || !starterId || !mainId || !dessertId) {
     console.log("Missing data");
     return;
   }
@@ -33,9 +34,14 @@ export const acceptRsvp = async (formData: FormData) => {
     .update({ attending: true })
     .eq("id", guestId);
 
-  const addOrder = supabaseClient
-    .from("orders")
-    .insert([{ guest_id: guestId, starter_id: starterId, main_id: mainId }]);
+  const addOrder = supabaseClient.from("orders").insert([
+    {
+      guest_id: guestId,
+      starter_id: starterId,
+      main_id: mainId,
+      dessert_id: dessertId,
+    },
+  ]);
 
   const reuslt = await Promise.all([updateGuest, addOrder]);
 

@@ -18,6 +18,7 @@ interface PageScrollerProps {
   menu: {
     starters: MenuItem[];
     mains: MenuItem[];
+    desserts: MenuItem[];
   };
 }
 
@@ -159,16 +160,14 @@ const PageScroller = ({ menu, untilWedding, guest }: PageScrollerProps) => {
                   Mains
                 </h3>
                 <MenuList items={menu.mains} name="mainId" />
+                <h3 className="font-title uppercase text-xl text-center">
+                  Desserts
+                </h3>
+                <MenuList items={menu.desserts} name="dessertId" />
               </div>
               <div className="mt-auto">
                 <div>
-                  <Button
-                    variant="text"
-                    type="submit"
-                    onClick={async () => {
-                      await declineRsvp(guest.id);
-                    }}
-                  >
+                  <Button variant="text" type="submit">
                     Complete
                   </Button>
                 </div>
