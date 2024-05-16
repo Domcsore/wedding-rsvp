@@ -1,4 +1,5 @@
 FROM node:20-slim AS pnpm
+ENV NEXT_TELEMETRY_DISABLED=1
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
@@ -8,6 +9,9 @@ COPY package.json pnpm-lock.yaml ./
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
 FROM pnpm AS builder
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV SUPABASE_URL="http://changeme.co.uk"
+ENV SUPABASE_API_KEY="changeme"
 WORKDIR /app
 COPY --from=deps node_modules ./node_modules
 COPY . .
@@ -15,8 +19,8 @@ RUN pnpm run build
 
 FROM node:20-slim
 WORKDIR /app
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 RUN mkdir .next
@@ -26,5 +30,5 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 USER nextjs
 EXPOSE 3000
-ENV PORT 3000
+ENV PORT=3000
 CMD HOSTNAME="0.0.0.0" node server.js
