@@ -77,6 +77,7 @@ const PageScroller = ({ menu, untilWedding, guest }: PageScrollerProps) => {
             alt="Hannah and Dominic"
             fill
             className="brightness-50 object-cover"
+            priority
           />
           <div className="absolute z-10 text-stone-100 mx-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-4">
             <p className="text-center text-3xl font-cursive text-slate-100">
