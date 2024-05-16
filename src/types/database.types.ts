@@ -74,12 +74,18 @@ export type Database = {
       orders: {
         Row: {
           guest_id: string
+          main_id: string
+          starter_id: string
         }
         Insert: {
           guest_id: string
+          main_id: string
+          starter_id: string
         }
         Update: {
           guest_id?: string
+          main_id?: string
+          starter_id?: string
         }
         Relationships: [
           {
@@ -87,6 +93,20 @@ export type Database = {
             columns: ["guest_id"]
             isOneToOne: true
             referencedRelation: "guests"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "orders_main_id_fkey"
+            columns: ["main_id"]
+            isOneToOne: false
+            referencedRelation: "menu"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "orders_starter_id_fkey"
+            columns: ["starter_id"]
+            isOneToOne: false
+            referencedRelation: "menu"
             referencedColumns: ["id"]
           },
         ]

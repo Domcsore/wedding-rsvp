@@ -6,9 +6,15 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  plugins: [require("rippleui")],
-  rippleui: {
-    defaultStyle: false,
+  theme: {
+    extend: {
+      fontFamily: {
+        cursive: ["Tangerine", "cursive"],
+        serif: ["'Noto Serif'", "serif"],
+        title: ["'Noto Serif Display'", "serif"],
+      },
+    },
   },
+  plugins: [require("rippleui")],
 };
 export default config;

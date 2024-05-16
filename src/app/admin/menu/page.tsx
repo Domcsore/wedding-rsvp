@@ -42,47 +42,70 @@ const Menu = async () => {
   return (
     <>
       <AdminHeading>Menu</AdminHeading>
+      <Section title="Add Item">
+        <form className="form-group" action={addItem}>
+          <div className="grid grid-cols-2 gap-2">
+            <div className="form-group">
+              <div className="form-field">
+                <label className="form-label" htmlFor="name">
+                  Name
+                </label>
+                <input
+                  className="input"
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                />
+              </div>
+              <div className="form-field">
+                <label className="form-label" htmlFor="ingredients">
+                  Ingredients
+                </label>
+                <input
+                  className="input"
+                  type="text"
+                  id="ingredients"
+                  name="ingredients"
+                  required
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="form-field">
+                <label className="form-label" htmlFor="allergens">
+                  Allergens
+                </label>
+                <input
+                  className="input"
+                  type="text"
+                  id="allergens"
+                  name="allergens"
+                />
+              </div>
+              <div className="form-field">
+                <label className="form-label" htmlFor="courseId">
+                  Course
+                </label>
+                <select className="select" id="courseId" name="courseId">
+                  <option value={COURSE.STARTER.id}>Starter</option>
+                  <option value={COURSE.MAIN.id}>Main</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div className="form-control">
+            <button className="btn btn-primary w-full">Add Item</button>
+          </div>
+        </form>
+      </Section>
+      <div className="divider" />
       <Section title="Starters">
         <MenuTable items={starters} />
       </Section>
       <div className="divider" />
       <Section title="Mains">
         <MenuTable items={mains} />
-      </Section>
-      <div className="divider" />
-      <Section title="Add Item">
-        <form className="form-group" action={addItem}>
-          <div className="form-field">
-            <label className="form-label" htmlFor="name">
-              Name
-            </label>
-            <input className="input" type="text" name="name" required />
-          </div>
-          <div className="form-field">
-            <label className="form-label" htmlFor="ingredients">
-              Ingredients
-            </label>
-            <input className="input" type="text" name="ingredients" required />
-          </div>
-          <div className="form-field">
-            <label className="form-label" htmlFor="allergens">
-              Allergens
-            </label>
-            <input className="input" type="text" name="allergens" />
-          </div>
-          <div className="form-field">
-            <label className="form-label" htmlFor="courseId">
-              Course
-            </label>
-            <select className="select" name="courseId">
-              <option value={COURSE.STARTER.id}>Starter</option>
-              <option value={COURSE.MAIN.id}>Main</option>
-            </select>
-          </div>
-          <div className="form-control">
-            <button className="btn btn-primary">Add Item</button>
-          </div>
-        </form>
       </Section>
     </>
   );

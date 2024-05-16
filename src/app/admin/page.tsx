@@ -1,5 +1,6 @@
 import { supabaseClient } from "@/clients/supabase";
 import { AdminHeading } from "@/components/admin/Heading";
+import { Section } from "@/components/admin/Section";
 import { revalidatePath } from "next/cache";
 
 const AdminHome = async () => {
@@ -35,63 +36,78 @@ const AdminHome = async () => {
   return (
     <>
       <AdminHeading>Guests</AdminHeading>
-      <form className="form-group mb-4" action={addGuest}>
-        <div className="form-field">
-          <label className="input-label" htmlFor="name">
-            Name
-          </label>
-          <input type="text" name="name" id="name" required className="input" />
-        </div>
-        <div className="form-field">
-          <label className="input-label" htmlFor="email">
-            Email
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            required
-            className="input"
-          />
-        </div>
-        <div className="form-control">
-          <button type="submit" className="btn btn-primary">
-            Add guest
-          </button>
-        </div>
-      </form>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Guest of</th>
-            <th>Attending</th>
-            <th>Email</th>
-            <th>Invite link</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((guest) => (
-            <tr key={guest.id}>
-              <td>{guest.name}</td>
-              <td>{data.find((g) => g.id === g.parent_guest)?.name}</td>
-              <td>
-                {guest.attending === null
-                  ? "Not responded"
-                  : guest.attending
-                  ? "Yes"
-                  : "No"}
-              </td>
-              <td>{guest.email}</td>
-              <td>
-                {guest.parent_guest
-                  ? ""
-                  : `https://wedding.dominicsore.co.uk/rsvp/${guest.id}`}
-              </td>
+      <Section title="Add Guest">
+        <form className="form-group mb-4" action={addGuest}>
+          <div className="grid grid-cols-2 gap-2">
+            <div className="form-field">
+              <label className="input-label" htmlFor="name">
+                Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                required
+                className="input max-w-full"
+              />
+            </div>
+            <div className="form-field">
+              <label className="input-label" htmlFor="email">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                className="input max-w-full"
+              />
+            </div>
+          </div>
+          <div className="form-control">
+            <button type="submit" className="btn btn-primary w-full">
+              Add guest
+            </button>
+          </div>
+        </form>
+      </Section>
+
+      <div className="divider" />
+
+      <Section title="Guest list">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Guest of</th>
+              <th>Attending</th>
+              <th>Email</th>
+              <th>Invite link</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data.map((guest) => (
+              <tr key={guest.id}>
+                <td>{guest.name}</td>
+                <td>{data.find((g) => g.id === g.parent_guest)?.name}</td>
+                <td>
+                  {guest.attending === null
+                    ? "Not responded"
+                    : guest.attending
+                    ? "Yes"
+                    : "No"}
+                </td>
+                <td>{guest.email}</td>
+                <td>
+                  {guest.parent_guest
+                    ? ""
+                    : `https://wedding.dominicsore.co.uk/rsvp/${guest.id}`}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Section>
     </>
   );
 };

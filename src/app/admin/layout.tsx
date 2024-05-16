@@ -14,6 +14,9 @@ const Layout = ({ children }: PropsWithChildren) => {
               <li className="menu-item">
                 <Link href="/admin/menu">Menu</Link>
               </li>
+              <li className="menu-item">
+                <Link href="/admin/orders">Orders</Link>
+              </li>
             </ul>
           </nav>
         </section>
