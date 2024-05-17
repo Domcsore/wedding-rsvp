@@ -97,9 +97,15 @@ const PageScroller = ({ menu, untilWedding, guest }: PageScrollerProps) => {
         <PageSection>
           <div className="border-t-8 border-b-8 border-stone-500 py-8 h-full flex flex-col items-center">
             <div className="my-auto grid gap-8">
+              <time
+                className=" text-center text-3xl md:text-2xl font-title uppercase underline underline-offset-8 text-stone-700"
+                dateTime="2024-06-22"
+              >
+                22/06/2024
+              </time>
               <div>
                 <h3 className="text-center font-cursive text-3xl">Ceremony</h3>
-                <address className="font-title uppercase text-center text-2xl md:text-xl tracking-wider">
+                <address className="font-title uppercase text-center text-xl md:text-xl tracking-wider">
                   Ealing Abbey
                   <br /> Charlbury Grove
                   <br /> Ealing, W5 2DY
@@ -109,7 +115,7 @@ const PageScroller = ({ menu, untilWedding, guest }: PageScrollerProps) => {
               </div>
               <div>
                 <h3 className="text-center font-cursive text-3xl">Reception</h3>
-                <address className="font-title uppercase text-center text-2xl md:text-xl tracking-wider">
+                <address className="font-title uppercase text-center text-xl md:text-xl tracking-wider">
                   The Drayton Court Hotel
                   <br /> 2 The Avenue
                   <br /> Ealing, W13 8PH

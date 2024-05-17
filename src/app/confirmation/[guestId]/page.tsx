@@ -29,6 +29,12 @@ const Confirmation = async ({ params }: { params: { guestId: string } }) => {
           <h1 className="font-title uppercase text-3xl text-center w-full">
             Thank you {data.name}
           </h1>
+          <time
+            className="text-lg md:text-xl font-title uppercase tracking-wider text-center underline underline-offset-8 text-stone-700"
+            dateTime="2024-06-22"
+          >
+            22/06/2024
+          </time>
           <address className="font-title uppercase text-center text-lg md:text-xl tracking-wider">
             Ealing Abbey
             <br /> Charlbury Grove
