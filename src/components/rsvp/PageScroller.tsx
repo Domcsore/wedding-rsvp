@@ -5,8 +5,6 @@ import Image from "next/image";
 import { acceptRsvp, declineRsvp } from "@/app/actions";
 import { Button } from "./Button";
 import { MenuItem } from "@/types/menu";
-import * as RadioGroup from "@radix-ui/react-radio-group";
-import { GiCheckMark } from "react-icons/gi";
 import { MenuList } from "./MenuList";
 
 interface PageScrollerProps {
@@ -106,7 +104,7 @@ const PageScroller = ({ menu, untilWedding, guest }: PageScrollerProps) => {
                   <br /> Charlbury Grove
                   <br /> Ealing, W5 2DY
                   <br />
-                  at 3:00pm
+                  at 3:30pm
                 </address>
               </div>
               <div>
