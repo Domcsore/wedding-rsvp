@@ -99,9 +99,11 @@ const AdminHome = async () => {
                 </td>
                 <td>{guest.email}</td>
                 <td>
-                  {guest.parent_guest
-                    ? ""
-                    : `https://wedding.dominicsore.co.uk/rsvp/${guest.id}`}
+                  <a
+                    href={`https://wedding.dominicsore.co.uk/rsvp/${guest.id}`}
+                  >
+                    {`https://wedding.dominicsore.co.uk/rsvp/${guest.id}`}
+                  </a>
                 </td>
               </tr>
             ))}
