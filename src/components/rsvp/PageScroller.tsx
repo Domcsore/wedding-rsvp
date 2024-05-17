@@ -114,7 +114,7 @@ const PageScroller = ({ menu, untilWedding, guest }: PageScrollerProps) => {
                   <br /> 2 The Avenue
                   <br /> Ealing, W13 8PH
                   <br />
-                  at 4:30pm till late
+                  at 5:00pm till late
                 </address>
               </div>
             </div>

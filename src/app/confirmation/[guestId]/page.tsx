@@ -25,9 +25,25 @@ const Confirmation = async ({ params }: { params: { guestId: string } }) => {
   return isAttending ? (
     <PageSection>
       <div className="border-t-8 border-b-8 border-stone-500 py-8 h-full flex flex-col items-center justify-center">
-        <h1 className="font-title uppercase text-3xl text-center w-full">
-          Thank you {data.name}
-        </h1>
+        <div className="grid gap-4">
+          <h1 className="font-title uppercase text-3xl text-center w-full">
+            Thank you {data.name}
+          </h1>
+          <address className="font-title uppercase text-center text-lg md:text-xl tracking-wider">
+            Ealing Abbey
+            <br /> Charlbury Grove
+            <br /> Ealing, W5 2DY
+            <br />
+            at 3:30pm
+          </address>
+          <address className="font-title uppercase text-center text-lg md:text-xl tracking-wider">
+            The Drayton Court Hotel
+            <br /> 2 The Avenue
+            <br /> Ealing, W13 8PH
+            <br />
+            at 5:00pm till late
+          </address>
+        </div>
       </div>
     </PageSection>
   ) : (
