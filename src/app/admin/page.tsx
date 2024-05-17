@@ -8,15 +8,14 @@ const AdminHome = async () => {
     "use server";
 
     const name = formData.get("name")?.toString();
-    const email = formData.get("email")?.toString();
 
-    if (!name || !email) {
+    if (!name) {
       return;
     }
 
     const { error } = await supabaseClient.from("guests").insert({
       name,
-      email,
+      email: "NA",
     });
 
     if (error) {
@@ -47,18 +46,6 @@ const AdminHome = async () => {
                 type="text"
                 name="name"
                 id="name"
-                required
-                className="input max-w-full"
-              />
-            </div>
-            <div className="form-field">
-              <label className="input-label" htmlFor="email">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
                 required
                 className="input max-w-full"
               />
